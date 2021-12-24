@@ -1,14 +1,14 @@
 console.log("GoGame Backend is running");
 
 const express = require("express");
-const conectarDB = require("./config/db");
 const cors = require("cors");
+const conectarDB = require("./config/db");
 const app = express();
 
 conectarDB();
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use("/maintenance", require("./routes/maintenance"));
 app.use("/message", require("./routes/message"));
 
