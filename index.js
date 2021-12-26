@@ -12,9 +12,12 @@ app.use(express.json());
 app.use("/maintenance", require("./routes/maintenance"));
 app.use("/message", require("./routes/message"));
 
-app.listen(3555, () => {
+app.listen(process.env.PORT || 3555, () => {
   console.log("App listening on port 3555!");
 });
+// app.listen(3555, () => {
+//   console.log("App listening on port 3555!");
+// });
 
-// const host = "0.0.0.0";
+const host = "0.0.0.0";
 // app.listen(process.env.PORT || 5000);
