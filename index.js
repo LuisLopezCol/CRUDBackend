@@ -10,32 +10,20 @@ conectarDB();
 app.use(cors());
 app.use(express.json());
 
-// 1) ------ Project CRUD Socialboil
-app.use("/maintenance", require("./routes/maintenance"));
-app.use("/message", require("./routes/message"));
+// 1) ---------------------- Project CRUD Socialboil
+app.use("/maintenance", require("./routes/CRUDMaintenance"));
+app.use("/message", require("./routes/CRUDMessage"));
 
-// 2) ------ Project CS50
-app.use("/cs50", require("./routes/messageCS50"));
-app.use("/cs50/rating", require("./routes/ratingCS50"));
-//I did this here to avoid the creation of more files in the project
-app.get("/cs50/download", async (req, res) => {
-  try {
-    const file = "assets/weeek1Cash.pdf";
-    if (!file) {
-      res.status(404).json({ error: "The file does not exit" });
-    }
-    res.download(file);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("There was a mistake, please comunicate with IT Team");
-  }
-});
-/* //Another way to do the above
-app.get("/cs50/download", function (req, res) {
-  const file = "assets/weeek1Cash.pdf";
-  // console.log(req.query.filename);
-  res.download(file);
-}); */
+// 2) ---------------------- Project CS50
+app.use("/cs50", require("./routes/CS50Message"));
+app.use("/cs50/rating", require("./routes/CS50Rating"));
+app.use("/cs50/download/", require("./routes/CS50Download"));
+
+// 3) ---------------------- Personal Portfolio
+app.use("/portfolio/download", require("./routes/portfolioDownload"));
+app.use("/portfolio/rating", require("./routes/portfolioRating"));
+app.use("/portfolio/testimonials", require("./routes/portfolioMessage"));
+app.use("/portfolio/email", require("./routes/portfolioEmail"));
 
 const host = "0.0.0.0";
 app.listen(process.env.PORT || 5555, () => {
