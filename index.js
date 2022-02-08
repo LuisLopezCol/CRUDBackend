@@ -25,6 +25,11 @@ app.use("/portfolio/rating", require("./routes/portfolioRating"));
 app.use("/portfolio/testimonials", require("./routes/portfolioMessage"));
 app.use("/portfolio/email", require("./routes/portfolioEmail"));
 
+// 3) ---------------------- Go Game
+app.use("/gogame/stock/products", require("./routes/gogameProducts"));
+app.use("/gogame/sales", require("./routes/gogameSales"));
+app.use("/gogame/contact", require("./routes/gogameContact"));
+
 const host = "0.0.0.0";
 app.listen(process.env.PORT || 5555, () => {
   console.log("App listening on port 5555!");
